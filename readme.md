@@ -1,7 +1,7 @@
 Mooorph
 =========
 
-**An agnostic tree morphing**
+**An agnostic tree morpher**
 
 Basic Usage
 ------
