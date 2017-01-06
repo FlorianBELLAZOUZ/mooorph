@@ -1,0 +1,24 @@
+{
+  "name": "mooorph",
+  "version": "0.0.0",
+  "description": "An agnostic tree morpher",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorianBELLAZOUZ/mooorph.git"
+  },
+  "keywords": ["tree", "morph", "diff", "patch"],
+  "author": "florianBellazouz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlorianBELLAZOUZ/mooorph/issues"
+  },
+  "homepage": "https://github.com/FlorianBELLAZOUZ/mooorph#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
