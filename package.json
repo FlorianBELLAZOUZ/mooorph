@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/FlorianBELLAZOUZ/mooorph.git"
   },
-  "keywords": ["tree", "morph", "diff", "patch"],
+  "keywords": [
+    "tree",
+    "morph",
+    "diff",
+    "patch"
+  ],
   "author": "florianBellazouz",
   "license": "ISC",
   "bugs": {
@@ -19,6 +24,7 @@
   "homepage": "https://github.com/FlorianBELLAZOUZ/mooorph#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "clone": "^2.1.0",
     "mocha": "^3.2.0"
   }
 }
