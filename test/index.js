@@ -9,5 +9,6 @@ describe('Morph',()=>{
     Morph(tree,Trees.b)
 
     tree.should.be.deep.equal(Trees.b)
+    tree.should.be.not.equal(Trees.b)
   })
 })

@@ -37,6 +37,7 @@ API
 
 options.childrenKey = 'children'
 options.isSame = (oldNode, newNode)=>boolean
-options.morph = (oldNode, newNode, oldParent, path)=>undefined
-options.remove = (oldNode, newNode, oldParent, path)=>undefined
-options.create = (oldNode, newNode, oldParent, path)=>undefined
+options.morph = (oldNode, newNode, oldParent, index)=>undefined
+options.remove = (oldNode, newNode, oldParent, index)=>undefined
+options.create = (oldNode, newNode, oldParent, index)=>undefined
+options.replace = (oldNode, newNode, oldParent, index)=>undefined
