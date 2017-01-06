@@ -1,5 +1,5 @@
 const Should = require('chai').Should()
-const Trees = require('./trees')
+const Trees = require('./utils/trees')
 const Clone = require('clone')
 const Morph = require('..')
 
