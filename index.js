@@ -13,7 +13,6 @@
 //   -> walk all child nodes and append to old node
 const morph = (oldTree,newTree,options={})=>{
   options = Object.assign(defaultOptions, options, {__path__:[]})
-  debugger
   var tree = walk(newTree,oldTree,options)
   return tree
 }
