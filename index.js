@@ -24,6 +24,7 @@ const defaultOptions = {
   remove:(oldNode,newNode,parent,index)=>parent.children.splice(index,1),
   create:(oldNode,newNode,parent,index)=>parent.children.push(newNode),
   replace:(oldNode,newNode,parent,index)=>parent.children[index]=newNode,
+  skip:(oldNode,newNode,path)=>false,
   morph:(oldNode,newNode,parent,index)=>{
     newNode = Object.assign({},newNode)
     delete newNode['children']
@@ -34,6 +35,8 @@ const defaultOptions = {
 // walk and morph a dom tree
 // (obj, obj) -> obj
 function walk (newNode,oldNode,options) {
+  if(options.skip(oldNode,newNode,options.__path__)) return oldNode
+
   if (!oldNode) {
     return newNode
   } else if (!newNode) {
