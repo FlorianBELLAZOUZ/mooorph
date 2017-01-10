@@ -12,7 +12,7 @@
 // nodes are the same
 //   -> walk all child nodes and append to old node
 const morph = (oldTree,newTree,options={})=>{
-  options = Object.assign(defaultOptions, options)
+  options = Object.assign(defaultOptions, options, {__path__:[]})
   debugger
   var tree = walk(newTree,oldTree,options)
   return tree
@@ -20,7 +20,7 @@ const morph = (oldTree,newTree,options={})=>{
 
 const defaultOptions = {
   childrenKey:'children',
-  isSame:(oldNode,newNode)=>oldNode.name===newNode.name,
+  isSame:(oldNode,newNode,path)=>oldNode.name===newNode.name,
   remove:(oldNode,newNode,parent,index)=>parent.children.splice(index,1),
   create:(oldNode,newNode,parent,index)=>parent.children.push(newNode),
   replace:(oldNode,newNode,parent,index)=>parent.children[index]=newNode,
@@ -39,10 +39,9 @@ function walk (newNode,oldNode,options) {
   } else if (!newNode) {
     return null
   } else if (newNode !== oldNode) {
-    if (!options.isSame(oldNode,newNode)) {
+    if (!options.isSame(oldNode,newNode,options.__path__)) {
       return newNode
     } else {
-      console.log('morph')
       options.morph(oldNode,newNode)
       updateChildren(newNode,oldNode,options)
       return oldNode
@@ -67,21 +66,20 @@ function updateChildren (newNode,oldNode,options) {
   for (var i = 0; i < length; i++) {
     var newChildNode = newNode[options.childrenKey][i]
     var oldChildNode = oldNode[options.childrenKey][i]
+    options.__path__.push(i)
     var retChildNode = walk(newChildNode,oldChildNode,options)
     if (!retChildNode) {
       if (oldChildNode) {
-        console.log('remove')
         toRemove.push([oldChildNode,newChildNode,oldNode,i])
       }
     } else if (!oldChildNode) {
       if (retChildNode) {
-        console.log('create')
         options.create(oldChildNode,newChildNode,oldNode,i)
       }
     } else if (retChildNode !== oldChildNode) {
-      console.log('replace')
       options.replace(oldChildNode,newChildNode,oldNode,i)
     }
+    options.__path__.pop()
   }
 
   for(var y=0;y<toRemove.length;y++)options.remove.apply(0,toRemove[y])
